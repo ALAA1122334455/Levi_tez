@@ -47,5 +47,3 @@ def get_reset(user, domain):
             return jsonify({'error': 'domain'}), 400
         return jsonify({'reset': 'banned or error', 'dev': '3laa'})
 
-if __name__ == '__main__':
-    app.run(debug=True)
