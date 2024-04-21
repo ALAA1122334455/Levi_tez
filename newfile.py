@@ -46,4 +46,5 @@ def get_reset(user, domain):
         if not reset or not reset.endswith('@' + domain):
             return jsonify({'error': 'domain'}), 400
         return jsonify({'reset': 'banned or error', 'dev': '3laa'})
-
+if __name__=='__main__':
+  app.run()
