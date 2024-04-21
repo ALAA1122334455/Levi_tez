@@ -1,4 +1,4 @@
-flask
+Flask 3.0.3
 requests
 gunicorn
 
@@ -7,7 +7,6 @@ gunicorn
 OneClick==3.0.1
 
 
-Flask==2.1.2
 
 
 
