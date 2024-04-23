@@ -1,1 +1,1 @@
-web: gunicorn app:app
+worker: python get2011.py
