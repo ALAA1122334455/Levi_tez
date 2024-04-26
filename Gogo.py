@@ -59,10 +59,6 @@ def get_username():
       opi1+=1
       print(username,'from:',opi1)
       check(username)
-      if opi1>3000:
-          httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=تصفير: ناجح✅")
-          sys.exit()
-          
     except:pass
 httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=بدأ:ناجح✅")
 threads = []
