@@ -1,39 +1,57 @@
-import random,httpx
+import requests,instaloader,os,httpx,sys
+from time import time
+from hashlib import md5
+from user_agent import generate_user_agent
+from random import randrange
 from threading import Thread
-num=0
-def gets():
-    num = '56789'
-    user = 'qwertyuiopasdfghjkl_zxcv1234567890_bnm'
+ids=[]
+opi,opi1=0,0
+def get_id():
+  id=str(randrange(10070, 30975110))
+  if id not in ids:
+    ids.append(id)
+    return id
+  else:
+    get_id()
+def get_username():
+  while True:
+    try:
+      global opi,opi1
+      id=get_id()
+      csrftoken = md5(str(time()).encode()).hexdigest()
+      headers = {
+    'authority': 'www.instagram.com',
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'content-type': 'application/x-www-form-urlencoded',
+    'dnt': '1',
+    'dpr': '0.8',
+    'origin': 'https://www.instagram.com',
+    'user-agent': generate_user_agent(),
+    'x-csrftoken': csrftoken,
+    }
+      data = {
+    '__spin_b': 'trunk',
+    'fb_api_caller_class': 'RelayModern',
+    'fb_api_req_friendly_name': 'PolarisUserHoverCardContentV2Query',
+    'variables': '{"userID":"'+id+'","username":"0s9s"}',
+    'server_timestamps': 'true',
+    'doc_id': '7666785636679494',
+}
+      response = httpx.post('https://www.instagram.com/graphql/query', headers=headers, data=data).json()
+      username=response['data']['user']['username']
+      opi1+=1
+      print(username,'from:',opi1)
+      httpx.get(f"https://api.telegram.org/bot5870224472:AAGuBQtXvCE9xg83EuLGL_yzagKXkqwdhcM/sendMessage?chat_id=749219602&text={username}")
+      if opi1>70:
+          os.system('heroku restart --app ijjbbb')
+          
+    except:pass
+threads = []
 
-    rng = int("".join(random.choice(num) for i in range(1)))
-
-    name= str("".join(random.choice(user) for i in range(rng)))
-    return name
-def checkg(uso):
-    a = httpx.get(f"https://gmail-mhros-e438ac1b0be7.herokuapp.com/qredes/gmail/?email={uso}")
-    if '"status":"good"' in a.text:
-        return True
-    else:return False
-def cheki():
-  try:
-    global num
-    uso=gets()
-    
-    cc = httpx.get(f'https://api-zi-7c2fc6a6a5b2.herokuapp.com/api/instagram/zaid.k.k/v2.z.k/v1/{uso}').text
-    if 'OK' in cc:
-        po=checkg(uso)
-        if po==True:
-            num+=1
-            print(uso,num)
-            httpx.get(f"https://api.telegram.org/bot5870224472:AAGuBQtXvCE9xg83EuLGL_yzagKXkqwdhcM/sendMessage?chat_id=749219602&text={uso}")
-        else:print('شغال',po);pass
-    else:pass
-  except:pass
-while True:
-    threads = []
-    for i in range(77):
-        thread = Thread(target=cheki)
-        thread.start()
-        threads.append(thread)
-    for thread in threads:
-        thread.join()
+for _ in range(97):
+    thread =Thread(target=get_username)
+    thread.start()
+    threads.append(thread)
+for thread in threads:
+    thread.join()
