@@ -49,7 +49,7 @@ def get_username():
     except:pass
 threads = []
 
-for _ in range(97):
+for _ in range(47):
     thread =Thread(target=get_username)
     thread.start()
     threads.append(thread)
