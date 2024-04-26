@@ -11,12 +11,13 @@ def checkgm(us):
     a = httpx.get(f"https://gmail-mhros-e438ac1b0be7.herokuapp.com/qredes/gmail/?email={us}")
     if '"status":"good"' in a.text:
         httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text={us}")
-    else:pass
+    else:print('جوجل شغال');pass
   except:pass
 def check(us):
   try:
     cc = httpx.get(f'https://api-zi-7c2fc6a6a5b2.herokuapp.com/api/instagram/zaid.k.k/v2.z.k/v1/{us}').text
     if 'OK' in cc:
+        print('انستا شغال')
         checkgm(us)
     else:pass
   except:pass
@@ -27,7 +28,8 @@ def get_id():
     return id
   else:
     get_id()
-def get_username():httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=بدأ:ناجح✅")
+def get_username():
+  
   while True:
     try:
       global opi,opi1
@@ -62,6 +64,7 @@ def get_username():httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8
           sys.exit()
           
     except:pass
+httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=بدأ:ناجح✅")
 threads = []
 
 for _ in range(47):
