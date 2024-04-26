@@ -43,8 +43,8 @@ def get_username():
       opi1+=1
       print(username,'from:',opi1)
       httpx.get(f"https://api.telegram.org/bot5870224472:AAGuBQtXvCE9xg83EuLGL_yzagKXkqwdhcM/sendMessage?chat_id=749219602&text={username}")
-      if opi1>700:
-          os.system('restart worker --app ijjbbb')
+      if opi1>3000:
+          sys.exit()
           
     except:pass
 threads = []
