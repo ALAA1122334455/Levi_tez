@@ -18,6 +18,8 @@ def check(us):
     cc = httpx.get(f'https://api-zi-7c2fc6a6a5b2.herokuapp.com/api/instagram/zaid.k.k/v2.z.k/v1/{us}').text
     if 'OK' in cc:
         checkgm(us)
+    else:pass
+  except:pass
 def get_id():
   id=str(randrange(10070, 30975110))
   if id not in ids:
