@@ -7,7 +7,7 @@ from user_agent import generate_user_agent
 
 import httpx
 
-apps = Flask(__name__)
+app = Flask(__name__)
 
 def FromCreate(email):
     try:
@@ -46,4 +46,5 @@ def FromCreate(email):
 def check_email(email):
     result = FromCreate(email)
     return jsonify(result)
-
+if __name__ == '__main__':
+    app.run()
