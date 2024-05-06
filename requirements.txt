@@ -1,7 +1,6 @@
 Flask
 requests
 gunicorn
-pyqt5==5.15.9
 httpx
 flask
 requests
