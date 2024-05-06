@@ -7,7 +7,7 @@ from user_agent import generate_user_agent
 
 import httpx
 
-app = Flask(__name__)
+apps = Flask(__name__)
 
 def FromCreate(email):
     try:
