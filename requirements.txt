@@ -8,4 +8,4 @@ requests
 faker
 user_agent
 httpx
-secrets
+secrets==1.0.2
