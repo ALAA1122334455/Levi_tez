@@ -27,7 +27,7 @@ def FromCreate(email):
         }
 
         
-        rrs = httpx.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data)
+        rrs = httpx.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data,proxies={'http': os.environ.get('PROXIMO_URL', '')})
         aj = str(rrs.text)
         print(aj)
         if 'few' in aj:
