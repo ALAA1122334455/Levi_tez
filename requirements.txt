@@ -11,7 +11,12 @@ instaloader
 httpx
 
 
-
+flask
+requests
+faker
+user_agent
+httpx
+secrets
 
 user-agent==0.1.10
 
