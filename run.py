@@ -1,2 +1,3 @@
 from mainn import apps
-apps.run()
+if __name__ == '__main__':
+    apps.run()
