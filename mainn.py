@@ -47,4 +47,4 @@ def check_email(email):
     result = FromCreate(email)
     return jsonify(result)
 if __name__ == '__main__':
-    app.run()
+    app.run(port='8080')
