@@ -1,1 +1,1 @@
-worker: python Gogo.py
+web: gunicorn run:app
