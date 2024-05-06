@@ -15,4 +15,4 @@ def get_google_proxy():
     return jsonify({json_data['protoco']: json_data['curl']})
 
 if name == 'main':
-    app.run()
+    app.run(port=8080)
