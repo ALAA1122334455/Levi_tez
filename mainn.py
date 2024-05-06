@@ -26,14 +26,12 @@ def FromCreate(email):
             'email': email,
         }
 
-        dataa = httpx.get('https://gimmeproxy.com/api/getProxy?post=true', headers=headers).json()
-        dato = dataa["curl"]
-        proX = {'http://': f'{dato}', 'https://': f'{dato}'}
-        rrs = httpx.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data, proxies=proX)
+        
+        rrs = httpx.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data)
         aj = str(rrs.text)
         print(aj)
         if 'few' in aj:
-            return FromCreate(email)
+            return {'bad':'band'}
         elif 'taken' in aj:
             return {'status': 'available', 'dev': '3laa'}
         else:
