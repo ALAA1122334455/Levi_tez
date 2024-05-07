@@ -131,9 +131,9 @@ def check_gmail(email):
     else:return 'bad'
   except:check_gmail(email)
 #---------------------------[input]----------------------------#
-ID=input('Enter Your ID : ')
+ID=749219602
 system('cls' if name == 'nt' else 'clear')
-token=input('Enter Your Token : ')
+token="6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo"
 system('cls' if name == 'nt' else 'clear')
 #---------------------------[info]-----------------------------#
 def rest(user):
@@ -300,5 +300,5 @@ def main():
       h_h(email)
     except:''
 from threading import Thread
-for _ in range(100):
+for _ in range(70):
   Thread(target=main).start()
