@@ -1,46 +1,16 @@
 import os
-try:
-  from rich.console import Console
-  from rich.live import Live
-except:
-  os.system("pip install rich")
-  from rich.console import Console
-  from rich.live import Live
-try:
-  import requests
-except:
-  os.system("pip install requests")
-  import requests
-try:
-  from user_agent import generate_user_agent
-except:
-  os.system("pip install user_agent")
-  from user_agent import generate_user_agent
-try:
-  from time import time
-except:
-  os.system("pip install time")
-  from time import time
-try:
-  from hashlib import md5
-except:
-  os.system("pip install hashlib")
-  from hashlib import md5
-try:
-  from uuid import uuid4
-except:
-  os.system("pip install uuid")
-  from uuid import uuid4
-try:
-  from random import randrange,choice
-except:
-  os.system("pip install random")
-  from random import randrange,choice
-try:
-  from concurrent.futures import ThreadPoolExecutor
-except:
-  os.system("pip install concurrent.futures")
-  from concurrent.futures import ThreadPoolExecutor
+from rich.console import Console
+from rich.live import Live
+from rich.console import Console
+from rich.live import Live
+import requests
+from user_agent import generate_user_agent
+from time import time
+
+from hashlib import md5
+from uuid import uuid4
+from random import randrange,choice
+from concurrent.futures import ThreadPoolExecutor
 hits=0
 bads_instgram=0
 bads_email=0
