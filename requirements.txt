@@ -7,3 +7,4 @@ requests
 faker
 user_agent
 httpx
+uuid
