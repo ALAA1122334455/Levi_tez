@@ -1,8 +1,5 @@
 import os
-from rich.console import Console
-from rich.live import Live
-from rich.console import Console
-from rich.live import Live
+
 import requests
 from user_agent import generate_user_agent
 from time import time
@@ -14,14 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 hits=0
 bads_instgram=0
 bads_email=0
-BLUE = '\033[94m'
-RESET = '\033[0m'
-BOLD = '\033[1m'
-YELLOW = '\033[93m'
-RED = '\033[91m'
-GREEN = '\033[92m'
-CYAN = '\033[96m'
-MAGENTA = '\033[95m'
+
 ID = 749219602
 token = "6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo"
 #def namefile():
@@ -265,7 +255,7 @@ def check(email):
     ua=generate_user_agent()
     pp=choice('001')
     os.system('clear' if os.name == 'posix' else 'cls')
-    tt=(f"\r{GREEN}Hits:{GREEN} {hits} {RED}Bad instgram:{RED} {bads_instgram} {YELLOW}Email Not Available:{YELLOW} {bads_email}")
+    tt=(f"\rHits {hits} Bad instgram: {bads_instgram} Email Not Available: {bads_email}")
     print(tt)
     if pp == '0':
       headers = {
@@ -308,7 +298,7 @@ def check(email):
   except:''
    # check(email)
   os.system('clear' if os.name == 'posix' else 'cls')
-  tt=(f"\r{GREEN}Hits:{GREEN} {hits} {RED}Bad instgram:{RED} {bads_instgram} {YELLOW}Email Not Available:{YELLOW} {bads_email}")
+  tt=(f"\rHits {hits} Bad instgram: {bads_instgram} Email Not Available: {bads_email}")
   print(tt)
 
 
