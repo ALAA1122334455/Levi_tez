@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import http.client
 import json
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/get_proxy')
 def get_google_proxy():
@@ -12,7 +12,6 @@ def get_google_proxy():
     data = res.read().decode("utf-8")
     json_data = json.loads(data)
     conn.close()
-    return jsonify({json_data['protoco']: json_data['curl']})
+    return jsonify({json_data['protocol']: json_data['curl']})
 
-if name == 'main':
-    app.run(port=8080)
+app.run(port=8080)
