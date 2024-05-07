@@ -8,3 +8,5 @@ faker
 user_agent
 httpx
 uuid
+hashlib
+rich
