@@ -14,4 +14,4 @@ def get_google_proxy():
     conn.close()
     return jsonify({json_data['protocol']: json_data['curl']})
 
-app.run(port=0000)
+app.run()
